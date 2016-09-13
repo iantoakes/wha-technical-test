@@ -8,7 +8,7 @@ using RiskManager.Model;
 
 namespace RiskManager.Repository
 {
-    public class SettledRepository
+    public class SettledBetRepository : ISettledBetRepository
     {
         public List<Bet> GetAllBets()
         {

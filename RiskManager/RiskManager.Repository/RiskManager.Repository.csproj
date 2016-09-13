@@ -44,9 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISettledBetRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettledRepository.cs" />
-    <Compile Include="UnsettledRepository.cs" />
+    <Compile Include="SettledBetRepository.cs" />
+    <Compile Include="UnsettledBetRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Settled.csv">

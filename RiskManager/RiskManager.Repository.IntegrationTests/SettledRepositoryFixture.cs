@@ -8,7 +8,7 @@ namespace RiskManager.Repository.IntegrationTests
         [TestMethod]
         public void GetAll_Returns_AllBets()
         {
-            var repository = new SettledRepository();
+            var repository = new SettledBetRepository();
 
             var allBets = repository.GetAllBets();
 

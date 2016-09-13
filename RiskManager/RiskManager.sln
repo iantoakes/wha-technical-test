@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskManager.DomainLogic", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskManager.Repository.IntegrationTests", "RiskManager.Repository.IntegrationTests\RiskManager.Repository.IntegrationTests.csproj", "{FBF8BEFA-7A5F-48EE-8D79-FE65BCBA2ABD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiskManager.DomainLogic.Tests", "RiskManager.DomainLogic.Tests\RiskManager.DomainLogic.Tests.csproj", "{467C6303-8AAD-4C59-A936-8B6092F8C682}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FBF8BEFA-7A5F-48EE-8D79-FE65BCBA2ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF8BEFA-7A5F-48EE-8D79-FE65BCBA2ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF8BEFA-7A5F-48EE-8D79-FE65BCBA2ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467C6303-8AAD-4C59-A936-8B6092F8C682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467C6303-8AAD-4C59-A936-8B6092F8C682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467C6303-8AAD-4C59-A936-8B6092F8C682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467C6303-8AAD-4C59-A936-8B6092F8C682}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

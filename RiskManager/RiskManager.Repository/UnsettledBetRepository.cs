@@ -1,6 +1,6 @@
 ﻿namespace RiskManager.Repository
 {
-    public class UnsettledRepository
+    public class UnsettledBetRepository
     {
     }
 }
