@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -12,11 +13,22 @@ namespace RiskManager.Repository
     {
         public List<Bet> GetAllBets()
         {
+            return ReadDataFile();
+        }
+
+
+        public List<Bet> GetAllBetsForCustomer(int customerId)
+        {
+            return ReadDataFile().Where(b => b.CustomerId == customerId).ToList();
+        }
+
+        private static List<Bet> ReadDataFile()
+        {
             var asm = Assembly.GetExecutingAssembly();
-            string path = Path.GetDirectoryName(asm.FullName);
-            using (var x = File.OpenText(Path.Combine(path, @"Data\Settled.csv")))
+            string path = new Uri(Path.GetDirectoryName(asm.CodeBase)).LocalPath;
+            using (var reader = File.OpenText(Path.Combine(path, @"Data\Settled.csv")))
             {
-                var csv = new CsvReader(x, new CsvConfiguration() {Maps = { }});
+                var csv = new CsvReader(reader, new CsvConfiguration() {Maps = {}});
                 csv.Configuration.RegisterClassMap<BetCsvClassMap>();
                 return csv.GetRecords<Bet>().ToList();
             }
