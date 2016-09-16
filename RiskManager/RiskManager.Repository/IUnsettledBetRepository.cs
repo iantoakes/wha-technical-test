@@ -3,9 +3,8 @@ using RiskManager.Model;
 
 namespace RiskManager.Repository
 {
-    public interface ISettledBetRepository
+    public interface IUnsettledBetRepository
     {
         List<Bet> GetAllBets();
-        List<Bet> GetAllBetsForCustomer(int customerId);
     }
 }

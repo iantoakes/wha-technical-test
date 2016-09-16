@@ -14,8 +14,9 @@ namespace RiskManager.DomainLogic.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void FindHighRiskCustomers_Throws_ArgumentException_On_ZeroSuccessRate()
         {
-            var repository = new Mock<ISettledBetRepository>();
-            var service = new CustomerRiskService(repository.Object);
+            var settledBetRepository = new Mock<ISettledBetRepository>();
+
+            var service = new CustomerRiskService(settledBetRepository.Object);
 
             service.FindHighRiskCustomers(0);
         }
@@ -24,8 +25,8 @@ namespace RiskManager.DomainLogic.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void FindHighRiskCustomers_Throws_ArgumentException_When_SuccessRate_Gt_100()
         {
-            var repository = new Mock<ISettledBetRepository>();
-            var service = new CustomerRiskService(repository.Object);
+            var settledBetRepository = new Mock<ISettledBetRepository>();
+            var service = new CustomerRiskService(settledBetRepository.Object);
 
             service.FindHighRiskCustomers(101);
         }
@@ -33,8 +34,8 @@ namespace RiskManager.DomainLogic.Tests
         [TestMethod]
         public void FindHighRiskCustomer_Finds_CustomersOverSuccessRate()
         {
-            var repository = new Mock<ISettledBetRepository>();
-            repository.Setup(m => m.GetAllBets())
+            var settledBetRepository = new Mock<ISettledBetRepository>();
+            settledBetRepository.Setup(m => m.GetAllBets())
                 .Returns(new List<Bet>
                 {
                     new Bet {CustomerId = 1, Stake = 5, Prize = 10},
@@ -42,7 +43,7 @@ namespace RiskManager.DomainLogic.Tests
                     new Bet {CustomerId = 1, Stake = 5, Prize = 0},
                 });
 
-            var service = new CustomerRiskService(repository.Object);
+            var service = new CustomerRiskService(settledBetRepository.Object);
             var result = service.FindHighRiskCustomers(60);
             Assert.AreEqual(1, result.Count);
         }
@@ -50,8 +51,8 @@ namespace RiskManager.DomainLogic.Tests
         [TestMethod]
         public void FindHighRiskCustomer_DoesntFind_CustomersUnderSuccessRate()
         {
-            var repository = new Mock<ISettledBetRepository>();
-            repository.Setup(m => m.GetAllBets())
+            var settledBetRepository = new Mock<ISettledBetRepository>();
+            settledBetRepository.Setup(m => m.GetAllBets())
                 .Returns(new List<Bet>
                 {
                     new Bet {CustomerId = 1, Stake = 5, Prize = 10},
@@ -59,10 +60,9 @@ namespace RiskManager.DomainLogic.Tests
                     new Bet {CustomerId = 1, Stake = 5, Prize = 0},
                 });
 
-            var service = new CustomerRiskService(repository.Object);
+            var service = new CustomerRiskService(settledBetRepository.Object);
             var result = service.FindHighRiskCustomers(60);
             Assert.AreEqual(0, result.Count);
         }
-
     }
 }

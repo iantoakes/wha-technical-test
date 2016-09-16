@@ -15,20 +15,14 @@ namespace RiskManager.DomainLogic
             _settledBetRepository = settledBetRepository;
         }
 
-        public List<CustomerRisk> FindHighRiskCustomers(uint successRate)
+        public List<BettingProfile> FindHighRiskCustomers(uint successRate)
         {
-            if(successRate == 0 || successRate > 100)
+            if (successRate == 0 || successRate > 100)
                 throw new ArgumentException("successRate must be a value between 1 and 100", nameof(successRate));
 
-            var allBets = _settledBetRepository.GetAllBets();
-            var customerRisks = allBets.GroupBy(b => b.CustomerId)
-                .Select(g =>
-                    new CustomerRisk
-                    {
-                        CustomerId = g.Key,
-                        SuccessRate = (int) (g.Count(b => b.Prize > 0)/(float) g.Count()*100)
-                    });
-            return customerRisks.Where(cr => cr.SuccessRate >= successRate).ToList();
-        } 
+            var settledBets = _settledBetRepository.GetAllBets();
+            var profiles = BettingAnalyser.ProfileCustomerBets(settledBets);
+            return profiles.Where(p => p.SuccessRate >= successRate).ToList();
+        }
     }
 }

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Http;
 using RiskManager.DomainLogic;
-using RiskManager.Model;
 using RiskManager.Service.Models;
 
 namespace RiskManager.Service.Controllers
@@ -16,39 +15,18 @@ namespace RiskManager.Service.Controllers
             _customerRiskService = customerRiskService;
         }
 
-        public IEnumerable<CustomerRiskResponse> Get(uint successRate)
+        public IEnumerable<BettingProfileResponse> Get(uint successRate = 60)
         {
             return _customerRiskService.FindHighRiskCustomers(successRate)
-                .Select(cr => new CustomerRiskResponse
+                .Select(cr => new BettingProfileResponse
                 {
-                    SuccessRate = cr.SuccessRate,
+                    BettingProfile = cr,
                     Customer = new Customer
                     {
                         CustomerId = cr.CustomerId,
                         Uri = Url.Link("DefaultApi", new {Controller = "settledbet", customerId = cr.CustomerId})
                     }
                 }).ToList();
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
     }
 }

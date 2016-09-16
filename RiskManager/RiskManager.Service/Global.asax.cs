@@ -18,8 +18,10 @@ namespace RiskManager.Service
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<SettledBetRepository>().As<ISettledBetRepository>();
+            builder.RegisterType<UnsettledBetRepository>().As<IUnsettledBetRepository>();
             builder.RegisterType<CustomerRiskService>().AsSelf();
-            builder.RegisterType<SettledBetService>().AsSelf();
+            builder.RegisterType<BettingRiskService>().AsSelf();
+            builder.RegisterType<SettledBetsService>().AsSelf();
 
             var container = builder.Build();
 

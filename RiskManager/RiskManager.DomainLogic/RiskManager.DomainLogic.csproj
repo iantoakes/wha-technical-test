@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BettingAnalyser.cs" />
+    <Compile Include="BettingRiskService.cs" />
     <Compile Include="CustomerRiskService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettledBetService.cs" />
+    <Compile Include="SettledBetsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RiskManager.Model\RiskManager.Model.csproj">

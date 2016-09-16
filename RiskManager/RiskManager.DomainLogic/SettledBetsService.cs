@@ -4,11 +4,11 @@ using RiskManager.Repository;
 
 namespace RiskManager.DomainLogic
 {
-    public class SettledBetService
+    public class SettledBetsService
     {
         private readonly ISettledBetRepository _settledBetRepository;
 
-        public SettledBetService(ISettledBetRepository settledBetRepository)
+        public SettledBetsService(ISettledBetRepository settledBetRepository)
         {
             _settledBetRepository = settledBetRepository;
         }

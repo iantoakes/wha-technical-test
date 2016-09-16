@@ -16,7 +16,6 @@ namespace RiskManager.Repository
             return ReadDataFile();
         }
 
-
         public List<Bet> GetAllBetsForCustomer(int customerId)
         {
             return ReadDataFile().Where(b => b.CustomerId == customerId).ToList();

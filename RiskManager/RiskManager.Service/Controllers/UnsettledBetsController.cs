@@ -3,7 +3,7 @@ using System.Web.Http;
 
 namespace RiskManager.Service.Controllers
 {
-    public class UnsettledController : ApiController
+    public class UnsettledBetsController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()

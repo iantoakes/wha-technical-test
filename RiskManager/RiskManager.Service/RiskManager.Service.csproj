@@ -96,12 +96,15 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerRiskController.cs" />
-    <Compile Include="Controllers\SettledBetController.cs" />
-    <Compile Include="Controllers\UnsettledController.cs" />
+    <Compile Include="Controllers\HighRiskBetsController.cs" />
+    <Compile Include="Controllers\SettledBetsController.cs" />
+    <Compile Include="Controllers\UnsettledBetsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomerRiskResponse.cs" />
+    <Compile Include="Models\BettingProfileResponse.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\HighRiskBetReponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
