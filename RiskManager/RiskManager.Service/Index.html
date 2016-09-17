@@ -1,14 +1,51 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="riskManager">
 <head>
     <title>Risk Manager</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8"/>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="app/app.js"></script>
+
+    <!--<script src="app/services/customerRiskResource.js"></script>-->
+    <script src="app/highRiskCustomers/hghRiskCustomersController.js"></script>
+
+    <style>
+        body {
+            margin: 20px;
+        }
+        div.panel-footer {
+            font-size: 0.8em;
+            color: lightslategray;
+        }
+        div.panel-footer ul {
+            display: inline-block;
+            position: absolute;
+            right: 30px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Risk Manager</h1>
-    <ul style="list-style: none">
-        <li><a href="api/customerrisk">Customer risk</a></li>
-        <li><a href="api/highriskbets">High risk bets</a></li>
-    </ul>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Risk manager</div>
+
+        <div class="panel-body">
+            <div ng-include="'app/highRiskCustomers/highRiskCustomerView.html'" class="col-sm-3"></div>
+        </div>
+
+        <div class="panel-footer">
+            <span>
+                Prepared by Ian Oakes
+            </span>
+            <ul class="list-unstyled list-inline">
+                <li><a href="api/customerrisk">Customer risk</a></li>
+                <li><a href="api/highriskbets">High risk bets</a></li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
