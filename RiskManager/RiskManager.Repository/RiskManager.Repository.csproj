@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutofacModule.cs" />
     <Compile Include="ISettledBetRepository.cs" />
     <Compile Include="IUnsettledBetRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

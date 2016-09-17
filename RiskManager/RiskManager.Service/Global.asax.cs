@@ -1,9 +1,12 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using RiskManager.DomainLogic;
-using RiskManager.Repository;
 
 namespace RiskManager.Service
 {
@@ -17,15 +20,27 @@ namespace RiskManager.Service
             var config = GlobalConfiguration.Configuration;
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterType<SettledBetRepository>().As<ISettledBetRepository>();
-            builder.RegisterType<UnsettledBetRepository>().As<IUnsettledBetRepository>();
-            builder.RegisterType<CustomerRiskService>().AsSelf();
-            builder.RegisterType<BettingRiskService>().AsSelf();
-            builder.RegisterType<SettledBetsService>().AsSelf();
+            RegisterAutofacModules(builder);
 
             var container = builder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+        }
+
+        private static void RegisterAutofacModules(ContainerBuilder builder)
+        {
+            var executingUri = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase);
+            string executingPath = Path.GetDirectoryName(executingUri.LocalPath);
+
+            var assemblies = new List<Assembly> {Assembly.GetExecutingAssembly()};
+            var enumerateFiles = Directory.EnumerateFiles(executingPath, "*.dll", SearchOption.AllDirectories).ToList();
+            assemblies.AddRange(
+                enumerateFiles
+                    .Where(filename => Regex.IsMatch(filename, @"RiskManager\.[A-Za-z]+\.dll"))
+                    .Select(Assembly.LoadFrom)
+                );
+
+            assemblies.ForEach(a => builder.RegisterAssemblyModules(a));
         }
     }
 }
