@@ -11,7 +11,8 @@
     <script src="app/app.js"></script>
 
     <!--<script src="app/services/customerRiskResource.js"></script>-->
-    <script src="app/highRiskCustomers/hghRiskCustomersController.js"></script>
+    <script src="app/highRiskCustomers/highRiskCustomersController.js"></script>
+    <script src="app/highRiskBets/highRiskBetsController.js"></script>
 
     <style>
         body {
@@ -34,7 +35,8 @@
         <div class="panel-heading">Risk manager</div>
 
         <div class="panel-body">
-            <div ng-include="'app/highRiskCustomers/highRiskCustomerView.html'" class="col-sm-3"></div>
+            <div ng-include="'app/highRiskCustomers/highRiskCustomersView.html'" class="col-sm-3"></div>
+            <div ng-include="'app/highRiskBets/highRiskBetsView.html'" class="col-sm-9"></div>
         </div>
 
         <div class="panel-footer">

@@ -90,8 +90,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\highRiskCustomers\hghRiskCustomersController.js" />
-    <Content Include="app\highRiskCustomers\highRiskCustomerView.html" />
+    <Content Include="app\highRiskBets\highRiskBetsView.html" />
+    <Content Include="app\highRiskBets\highRiskBetsController.js" />
+    <Content Include="app\highRiskCustomers\highRiskCustomersController.js" />
+    <Content Include="app\highRiskCustomers\highRiskCustomersView.html" />
     <Content Include="app\services\customerRiskResource.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

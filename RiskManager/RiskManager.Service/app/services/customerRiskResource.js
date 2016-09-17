@@ -2,10 +2,15 @@
     "use strict";
 
     angular
-        .module("riskManager")
-        .factory("customerRiskResource", ["$resource", customerRiskResource]);
+        .module("common.services")
+        .factory("customerRiskResource",
+        [
+            "$resource",
+            customerRiskResource
+        ]);
 
     function customerRiskResource($resource) {
         return $resource("/api/customerrisk/:successRate");
-    };
+    }
+
 }());

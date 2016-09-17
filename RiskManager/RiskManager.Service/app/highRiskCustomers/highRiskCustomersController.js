@@ -2,9 +2,9 @@
     "use strict";
     angular
         .module("riskManager")
-        .controller("hghRiskCustomersController", ["$scope", "$http",  hghRiskCustomersController]);
+        .controller("highRiskCustomersController", ["$scope", "$http", highRiskCustomersController]);
     //"customerRiskResource",customerRiskResource
-    function hghRiskCustomersController($scope, $http) {
+    function highRiskCustomersController($scope, $http) {
         //customerRiskResource.query(function(data) {
         //    $scope.highRiskCustomers = data;
         //});

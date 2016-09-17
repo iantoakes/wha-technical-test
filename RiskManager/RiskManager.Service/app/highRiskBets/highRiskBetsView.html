@@ -1,0 +1,39 @@
+﻿<div ng-controller="highRiskBetsController">
+    <style>
+        .glyphicon {
+            color: #337ab7;
+        }
+    </style>
+    <table class="table table-striped table-bordered table-condensed table-hover">
+        <h4>High risk unsettled bets</h4>
+        <thead>
+            <tr>
+                <th>Cust</th>
+                <th>Win rate</th>
+                <th>Event</th>
+                <th>Participant</th>
+                <th>Avg bet</th>
+                <th>Stake</th>
+                <th>To Win</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="highRiskBet in highRiskBets">
+                <td>{{highRiskBet.betProfile.bet.customerId}}</td>
+                <td>{{highRiskBet.betProfile.bettingProfile.successRate}}%</td>
+                <td>{{highRiskBet.betProfile.bet.eventId}}</td>
+                <td>{{highRiskBet.betProfile.bet.participantId}}</td>
+                <td>{{highRiskBet.betProfile.bettingProfile.averageBet}}</td>
+                <td>{{highRiskBet.betProfile.bet.stake}}</td>
+                <td>{{highRiskBet.betProfile.bet.prize}}</td>
+                <td>
+                    <span class="glyphicon glyphicon-question-sign" title="unusual win rate" ng-show="isIconVisible('UnusualWinRate', highRiskBet.betProfile.riskCategory)"></span>
+                    <span class="glyphicon glyphicon-alert" title="higher than ten times average" ng-show="isIconVisible('TenTimesAverage', highRiskBet.betProfile.riskCategory)"></span>
+                    <span class="glyphicon glyphicon-exclamation-sign" title="higher than ten times average" ng-show="isIconVisible('ThirtyTimesAverage', highRiskBet.betProfile.riskCategory)"></span>
+                    <span class="glyphicon glyphicon-usd" title="over a thousand dollar win" ng-show="isIconVisible('ThousandDollarWin', highRiskBet.betProfile.riskCategory)"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

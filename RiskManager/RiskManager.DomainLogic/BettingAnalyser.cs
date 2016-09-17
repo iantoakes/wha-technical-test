@@ -16,7 +16,7 @@ namespace RiskManager.DomainLogic
             var category = bettingProfile.SuccessRate >= successRate ? RiskCategory.UnusualWinRate : RiskCategory.None;
             category |= bet.Stake > bettingProfile.AverageBet * 10 ? RiskCategory.TenTimesAverage : category;
             category |= bet.Stake > bettingProfile.AverageBet * 30 ? RiskCategory.ThirtyTimesAverage : category;
-            category |= bet.Stake > 1000 ? RiskCategory.ThousandDollarWin : category;
+            category |= bet.Prize > 1000 ? RiskCategory.ThousandDollarWin : category;
 
             return category;
         }
