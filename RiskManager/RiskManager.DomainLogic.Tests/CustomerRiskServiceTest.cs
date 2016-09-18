@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NLog;
 using RiskManager.Model;
 using RiskManager.Repository;
 
@@ -16,7 +17,7 @@ namespace RiskManager.DomainLogic.Tests
         {
             var settledBetRepository = new Mock<ISettledBetRepository>();
 
-            var service = new CustomerRiskService(settledBetRepository.Object);
+            var service = new CustomerRiskService(new Mock<ILogger>().Object, settledBetRepository.Object);
 
             service.FindHighRiskCustomers(0);
         }
@@ -26,7 +27,7 @@ namespace RiskManager.DomainLogic.Tests
         public void FindHighRiskCustomers_Throws_ArgumentException_When_SuccessRate_Gt_100()
         {
             var settledBetRepository = new Mock<ISettledBetRepository>();
-            var service = new CustomerRiskService(settledBetRepository.Object);
+            var service = new CustomerRiskService(new Mock<ILogger>().Object, settledBetRepository.Object);
 
             service.FindHighRiskCustomers(101);
         }
@@ -43,7 +44,7 @@ namespace RiskManager.DomainLogic.Tests
                     new Bet {CustomerId = 1, Stake = 5, Prize = 0},
                 });
 
-            var service = new CustomerRiskService(settledBetRepository.Object);
+            var service = new CustomerRiskService(new Mock<ILogger>().Object, settledBetRepository.Object);
             var result = service.FindHighRiskCustomers(60);
             Assert.AreEqual(1, result.Count);
         }
@@ -60,7 +61,7 @@ namespace RiskManager.DomainLogic.Tests
                     new Bet {CustomerId = 1, Stake = 5, Prize = 0},
                 });
 
-            var service = new CustomerRiskService(settledBetRepository.Object);
+            var service = new CustomerRiskService(new Mock<ILogger>().Object, settledBetRepository.Object);
             var result = service.FindHighRiskCustomers(60);
             Assert.AreEqual(0, result.Count);
         }

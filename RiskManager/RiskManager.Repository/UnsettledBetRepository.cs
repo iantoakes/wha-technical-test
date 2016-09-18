@@ -5,14 +5,24 @@ using System.Linq;
 using System.Reflection;
 using CsvHelper;
 using CsvHelper.Configuration;
+using NLog;
 using RiskManager.Model;
 
 namespace RiskManager.Repository
 {
     public class UnsettledBetRepository : IUnsettledBetRepository
     {
+        private readonly ILogger _logger;
+
+        public UnsettledBetRepository(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public List<Bet> GetAllBets()
         {
+            _logger.Trace(() => "GetAllBets called");
+
             return ReadDataFile();
         }
 

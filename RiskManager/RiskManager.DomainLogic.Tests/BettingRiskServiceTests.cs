@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NLog;
 using RiskManager.Model;
 using RiskManager.Repository;
 
@@ -18,7 +19,7 @@ namespace RiskManager.DomainLogic.Tests
             var settledBetRepository = new Mock<ISettledBetRepository>();
             var unsettledBetRepository = new Mock<IUnsettledBetRepository>();
 
-            var service = new BettingRiskService(settledBetRepository.Object, unsettledBetRepository.Object);
+            var service = new BettingRiskService(new Mock<ILogger>().Object, settledBetRepository.Object, unsettledBetRepository.Object);
 
             service.FindHighRiskBets(0);
         }
@@ -30,7 +31,7 @@ namespace RiskManager.DomainLogic.Tests
             var settledBetRepository = new Mock<ISettledBetRepository>();
             var unsettledBetRepository = new Mock<IUnsettledBetRepository>();
 
-            var service = new BettingRiskService(settledBetRepository.Object, unsettledBetRepository.Object);
+            var service = new BettingRiskService(new Mock<ILogger>().Object, settledBetRepository.Object, unsettledBetRepository.Object);
 
             service.FindHighRiskBets(101);
         }
@@ -55,7 +56,7 @@ namespace RiskManager.DomainLogic.Tests
                     new Bet {CustomerId = 1, Stake = 5, Prize = 10}
                 });
 
-            var service = new BettingRiskService(settledBetRepository.Object, unsettledBetRepository.Object);
+            var service = new BettingRiskService(new Mock<ILogger>().Object, settledBetRepository.Object, unsettledBetRepository.Object);
 
             var result = service.FindHighRiskBets(60).First();
             Assert.IsTrue(result.RiskCategory.HasFlag(RiskCategory.UnusualWinRate));
@@ -81,7 +82,7 @@ namespace RiskManager.DomainLogic.Tests
                     new Bet {CustomerId = 1, Stake = 51, Prize = 10}
                 });
 
-            var service = new BettingRiskService(settledBetRepository.Object, unsettledBetRepository.Object);
+            var service = new BettingRiskService(new Mock<ILogger>().Object, settledBetRepository.Object, unsettledBetRepository.Object);
 
             var result = service.FindHighRiskBets(60).First();
             Assert.IsTrue(result.RiskCategory.HasFlag(RiskCategory.TenTimesAverage));

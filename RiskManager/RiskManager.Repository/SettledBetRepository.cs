@@ -5,19 +5,29 @@ using System.Linq;
 using System.Reflection;
 using CsvHelper;
 using CsvHelper.Configuration;
+using NLog;
 using RiskManager.Model;
 
 namespace RiskManager.Repository
 {
     public class SettledBetRepository : ISettledBetRepository
     {
+        private readonly ILogger _logger;
+
+        public SettledBetRepository(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public List<Bet> GetAllBets()
         {
+            _logger.Trace(() => "GetAllBets called");
             return ReadDataFile();
         }
 
         public List<Bet> GetAllBetsForCustomer(int customerId)
         {
+            _logger.Trace(() => $"GetAllBets called for {customerId}");
             return ReadDataFile().Where(b => b.CustomerId == customerId).ToList();
         }
 
