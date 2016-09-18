@@ -9,6 +9,7 @@ In order to build and run this solution you will need Visual Studio 2015
 - [nlog](http://nlog-project.org/)
 - [Json.NET](http://www.newtonsoft.com/json)
 - [CsvHelper](https://github.com/JoshClose/CsvHelper)
+
 ### Front end
 - [AngularJS](https://angularjs.org/)
 - [Boostrap](http://getbootstrap.com/)
